@@ -1,5 +1,5 @@
 {
-  "name": "future-tech-site",
+  "name": "future-tech-site-en",
   "version": "1.0.0",
   "scripts": {
     "dev": "next dev",

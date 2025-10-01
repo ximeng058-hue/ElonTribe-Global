@@ -4,17 +4,17 @@ export default function Home() {
   const companies = [
     {
       name: "xAI",
-      description: "xAI 由马斯克创立，目标是安全且有益的人工智能。",
+      description: "xAI was founded by Elon Musk, aiming for safe and beneficial AI.",
       link: "https://x.ai",
     },
     {
       name: "SpaceX",
-      description: "SpaceX 致力于让人类能够移民火星。",
+      description: "SpaceX is committed to enabling humans to colonize Mars.",
       link: "https://www.spacex.com",
     },
     {
       name: "Neuralink",
-      description: "Neuralink 研究脑机接口技术，探索医疗与人类增强。",
+      description: "Neuralink develops brain-computer interfaces for healthcare and human enhancement.",
       link: "https://neuralink.com",
     },
   ];
@@ -31,7 +31,7 @@ export default function Home() {
           setNews(data.articles);
         }
       } catch (error) {
-        console.error("获取新闻失败:", error);
+        console.error("Failed to fetch news:", error);
       } finally {
         setLoading(false);
       }
@@ -40,54 +40,36 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-50 text-gray-900 p-6 font-sans">
-      <header className="text-center py-10">
-        <h1 className="text-4xl font-bold mb-4">未来科技公司宣传站</h1>
-        <p className="text-lg text-gray-600">
-          探索人工智能、太空探索与脑机接口的前沿科技
-        </p>
+    <div className="min-h-screen bg-gray-100 p-6">
+      <header className="text-center mb-10">
+        <h1 className="text-4xl font-bold">Future Tech Companies</h1>
+        <p className="text-gray-600">Exploring the frontiers of AI, space, and brain-computer interfaces</p>
       </header>
 
-      {/* 公司介绍 */}
-      <section className="grid grid-cols-1 md:grid-cols-3 gap-6 my-10">
-        {companies.map((c, i) => (
-          <div key={i} className="bg-white shadow-md rounded-2xl p-6">
-            <h2 className="text-2xl font-semibold mb-2">{c.name}</h2>
+      <section className="grid md:grid-cols-3 gap-6 mb-12">
+        {companies.map((c) => (
+          <div key={c.name} className="p-6 bg-white rounded-2xl shadow hover:shadow-lg transition">
+            <h2 className="text-2xl font-bold mb-2">{c.name}</h2>
             <p className="text-gray-600 mb-4">{c.description}</p>
-            <a
-              href={c.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 hover:underline"
-            >
-              了解更多 →
+            <a href={c.link} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
+              Learn more
             </a>
           </div>
         ))}
       </section>
 
-      {/* 新闻模块 */}
-      <section className="my-10">
-        <h2 className="text-3xl font-bold mb-6 text-center">最新新闻</h2>
+      <section>
+        <h2 className="text-3xl font-bold mb-4">Latest News</h2>
         {loading ? (
-          <p className="text-center text-gray-500">正在加载新闻...</p>
-        ) : news.length === 0 ? (
-          <p className="text-center text-gray-500">暂无相关新闻</p>
+          <p>Loading...</p>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {news.map((n, i) => (
-              <div key={i} className="bg-white shadow-md rounded-2xl p-6">
-                <h3 className="text-xl font-semibold mb-2">{n.title}</h3>
-                <p className="text-gray-600 mb-4">
-                  {n.description || "点击了解更多"}
-                </p>
-                <a
-                  href={n.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-500 hover:underline"
-                >
-                  阅读原文
+          <div className="grid md:grid-cols-2 gap-6">
+            {news.map((article, idx) => (
+              <div key={idx} className="p-4 bg-white rounded-2xl shadow">
+                <h3 className="font-bold">{article.title}</h3>
+                <p className="text-gray-600">{article.description}</p>
+                <a href={article.url} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
+                  Read more
                 </a>
               </div>
             ))}
@@ -95,8 +77,8 @@ export default function Home() {
         )}
       </section>
 
-      <footer className="text-center py-6 text-gray-500 text-sm">
-        © {new Date().getFullYear()} 未来科技公司宣传站. 保留所有权利。
+      <footer className="text-center mt-12 text-gray-500">
+        © 2025 Future Tech Site. Built with Next.js and Vercel.
       </footer>
     </div>
   );
